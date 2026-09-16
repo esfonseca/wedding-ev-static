@@ -1,0 +1,22 @@
+services:
+  # Desenvolvimento: recarrega o navegador automaticamente a cada save.
+  # http://localhost:8080
+  dev:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    ports:
+      - "8080:8080"
+    volumes:
+      - .:/app
+    working_dir: /app
+
+  # Preview "produção": nginx puro, igual a um host estático real
+  # (GitHub Pages / Netlify / Vercel). Sem live-reload, sem injeção de script.
+  # http://localhost:8081
+  preview:
+    image: nginx:alpine
+    ports:
+      - "8081:80"
+    volumes:
+      - .:/usr/share/nginx/html:ro

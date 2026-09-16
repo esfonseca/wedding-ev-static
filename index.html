@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Evandro &amp; Vitória | Casamento</title>
+<meta name="description" content="Convite de casamento de Evandro e Vitória — Cerimônia Religiosa Católica Apostólica Romana.">
+
+<!-- Google Fonts:
+     - Cinzel: tipografia de letras capitais romanas, inspirada nas inscrições
+       clássicas em pedra encontradas em Roma e no Vaticano (não existe uma
+       fonte gratuita oficial "Vaticana"; Cinzel é a alternativa mais usada
+       no mercado de design para transmitir essa estética).
+     - Great Vibes: caligrafia manuscrita, comum em convites de casamento.
+     - Cormorant Garamond: serifada elegante, para textos corridos. -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Great+Vibes&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- ======================= NAV ======================= -->
+<header class="site-header" id="siteHeader">
+  <nav class="nav container">
+    <a href="#topo" class="nav-brand">E&amp;V</a>
+    <button class="nav-toggle" id="navToggle" aria-label="Abrir menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#historia">Nossa História</a></li>
+      <li><a href="#cerimonia">Cerimônia</a></li>
+      <li><a href="#contagem">Contagem</a></li>
+      <li><a href="#presenca">Presença</a></li>
+      <li><a href="#presentes">Presentes</a></li>
+    </ul>
+  </nav>
+</header>
+
+<!-- ======================= HERO ======================= -->
+<section class="hero" id="topo">
+  <div class="hero-ornament hero-ornament--top" aria-hidden="true">
+    <!-- EDITE AQUI: pode trocar este ícone de cruz por um brasão/monograma -->
+    <svg viewBox="0 0 24 40" class="cross-icon"><path d="M12 0v40M4 10h16" stroke="currentColor" stroke-width="1.2" fill="none"/></svg>
+  </div>
+
+  <p class="hero-eyebrow reveal">Com a bênção de Deus e de nossas famílias</p>
+
+  <h1 class="hero-names reveal">
+    <!-- EDITE AQUI: nomes dos noivos -->
+    <span>Evandro</span><em>&amp;</em><span>Vitória</span>
+  </h1>
+
+  <p class="hero-sub reveal">Convidam para celebrar o Sacramento do Matrimônio</p>
+
+  <div class="hero-date reveal">
+    <!-- EDITE AQUI: data do casamento (mantenha consistente com CONFIG em js/main.js) -->
+    <span>10</span><i></i><span>Abril</span><i></i><span>2027</span>
+  </div>
+
+  <a href="#contagem" class="scroll-cue" aria-label="Rolar para baixo">
+    <svg viewBox="0 0 24 24"><path d="M12 5v14M5 12l7 7 7-7" stroke="currentColor" stroke-width="1.2" fill="none"/></svg>
+  </a>
+</section>
+
+<!-- ======================= VERSÍCULO ======================= -->
+<section class="verse">
+  <div class="container reveal">
+    <svg class="quote-mark" viewBox="0 0 32 24" aria-hidden="true"><path d="M0 24V13.5C0 5 5 0 13 0v4.8C8 5.6 5.2 8.6 5 13.5h5.5V24H0zm17 0V13.5C17 5 22 0 30 0v4.8c-5 .8-7.8 3.8-8 8.7h5.5V24H17z" fill="currentColor"/></svg>
+    <p class="verse-text">"Portanto, o que Deus ajuntou, não o separe o homem."</p>
+    <p class="verse-ref">Evangelho segundo São Mateus, 19:6</p>
+  </div>
+</section>
+
+<!-- ======================= NOSSA HISTÓRIA ======================= -->
+<section class="section" id="historia">
+  <div class="container">
+    <p class="eyebrow reveal">Um pouco sobre nós</p>
+    <h2 class="section-title reveal">Nossa História</h2>
+    <div class="divider reveal" aria-hidden="true">
+      <svg viewBox="0 0 200 20"><path class="divider-path" d="M0 10 C 40 0, 60 20, 100 10 S 160 0, 200 10" stroke="currentColor" stroke-width="1" fill="none"/></svg>
+    </div>
+    <!-- EDITE AQUI: conte a história do casal -->
+    <p class="lead reveal">
+      Depois de anos caminhando juntos, decidimos selar nossa união diante de Deus
+      e das pessoas que amamos. Será uma honra ter você conosco neste dia tão especial,
+      celebrando não apenas o amor entre nós dois, mas também a fé que nos uniu.
+    </p>
+  </div>
+</section>
+
+<!-- ======================= CONTAGEM REGRESSIVA ======================= -->
+<section class="section countdown-section" id="contagem">
+  <div class="container">
+    <p class="eyebrow reveal">Falta pouco</p>
+    <h2 class="section-title reveal">Contagem Regressiva</h2>
+
+    <div class="countdown reveal" id="countdown" aria-live="polite">
+      <div class="countdown-box"><span class="countdown-num" id="cdDays">00</span><span class="countdown-label">dias</span></div>
+      <div class="countdown-box"><span class="countdown-num" id="cdHours">00</span><span class="countdown-label">horas</span></div>
+      <div class="countdown-box"><span class="countdown-num" id="cdMinutes">00</span><span class="countdown-label">min</span></div>
+      <div class="countdown-box"><span class="countdown-num" id="cdSeconds">00</span><span class="countdown-label">seg</span></div>
+    </div>
+
+    <!-- ======================= ADICIONAR À AGENDA ======================= -->
+    <div class="add-to-calendar reveal">
+      <button class="btn btn-primary" id="calendarToggle" aria-haspopup="true" aria-expanded="false">
+        <svg viewBox="0 0 24 24" class="btn-icon"><path d="M7 2v3M17 2v3M3.5 9h17M5 5h14a1.5 1.5 0 0 1 1.5 1.5V19a1.5 1.5 0 0 1-1.5 1.5H5A1.5 1.5 0 0 1 3.5 19V6.5A1.5 1.5 0 0 1 5 5z" stroke="currentColor" stroke-width="1.3" fill="none"/></svg>
+        Adicionar à Agenda
+      </button>
+      <div class="calendar-menu" id="calendarMenu">
+        <a id="calGoogle" target="_blank" rel="noopener">Google Calendar</a>
+        <a id="calOutlook" target="_blank" rel="noopener">Outlook</a>
+        <a id="calYahoo" target="_blank" rel="noopener">Yahoo Calendar</a>
+        <a id="calIcs" download="casamento-evandro-vitoria.ics">Apple / Outlook (.ics)</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= CERIMÔNIA & RECEPÇÃO ======================= -->
+<section class="section alt" id="cerimonia">
+  <div class="container">
+    <p class="eyebrow reveal">Celebração</p>
+    <h2 class="section-title reveal">Cerimônia &amp; Recepção</h2>
+    <div class="divider reveal" aria-hidden="true">
+      <svg viewBox="0 0 200 20"><path class="divider-path" d="M0 10 C 40 0, 60 20, 100 10 S 160 0, 200 10" stroke="currentColor" stroke-width="1" fill="none"/></svg>
+    </div>
+
+    <div class="cards">
+      <article class="card reveal">
+        <svg class="card-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2v6M9 5h6M6 22V12l6-4 6 4v10M9 22v-6h6v6" stroke="currentColor" stroke-width="1.2" fill="none"/></svg>
+        <h3>Cerimônia Religiosa</h3>
+        <p class="card-rite">Rito Católico Apostólico Romano</p>
+        <!-- EDITE AQUI: nome e endereço da igreja -->
+        <p class="card-detail">Basílica Santuário Sagrado Coração Misericordioso de Jesus<br>Içara, Santa Catarina</p>
+        <p class="card-time">10 de abril de 2027 · 17h00</p>
+
+        <!-- EDITE AQUI: mapa incorporado. Para trocar o local, gere um novo
+             embed em https://maps.google.com (Compartilhar → Incorporar um
+             mapa) e substitua apenas o "src" abaixo — o resto do markup
+             (classe map-embed, atributos) já cuida da responsividade. -->
+        <div class="map-embed">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d13177.678736545122!2d-49.33028189581815!3d-28.73031852223739!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95217f1ea0b97283%3A0x124ca72794b53ea8!2sBas%C3%ADlica%20Santu%C3%A1rio%20Sagrado%20Cora%C3%A7%C3%A3o%20Misericordioso%20de%20Jesus!5e1!3m2!1spt-BR!2sbr!4v1789420411679!5m2!1spt-BR!2sbr"
+            title="Mapa — Basílica Santuário Sagrado Coração Misericordioso de Jesus"
+            loading="lazy"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen></iframe>
+        </div>
+
+        <!-- EDITE AQUI: link do Google Maps -->
+        <a class="card-link" href="https://maps.google.com/?q=Bas%C3%ADlica+Santu%C3%A1rio+Sagrado+Cora%C3%A7%C3%A3o+Misericordioso+de+Jesus+I%C3%A7ara+SC" target="_blank" rel="noopener">Abrir no Google Maps →</a>
+      </article>
+
+      <article class="card reveal">
+        <svg class="card-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 21V9l8-6 8 6v12M4 21h16M9 21v-6h6v6" stroke="currentColor" stroke-width="1.2" fill="none"/></svg>
+        <h3>Recepção</h3>
+        <p class="card-rite">Festa &amp; Celebração</p>
+        <!-- EDITE AQUI: assim que o local da festa for confirmado, troque
+             o bloco abaixo pelo padrão usado no card da Cerimônia
+             (nome do espaço, endereço, horário e link do Google Maps). -->
+        <span class="card-badge">Local a definir</span>
+        <p class="card-detail">Em breve divulgaremos o local e horário da festa. Fique de olho por aqui!</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= TRAJE ======================= -->
+<section class="section">
+  <div class="container">
+    <p class="eyebrow reveal">Dress Code</p>
+    <h2 class="section-title reveal">Traje</h2>
+    <div class="divider reveal" aria-hidden="true">
+      <svg viewBox="0 0 200 20"><path class="divider-path" d="M0 10 C 40 0, 60 20, 100 10 S 160 0, 200 10" stroke="currentColor" stroke-width="1" fill="none"/></svg>
+    </div>
+    <!-- EDITE AQUI: traje sugerido -->
+    <p class="lead reveal">Esporte fino. Pedimos, com carinho, que a cor branca seja reservada à noiva.</p>
+    <div class="swatches reveal" aria-hidden="true">
+      <span style="background:#f3e9d8"></span>
+      <span style="background:#c9b48a"></span>
+      <span style="background:#7c8a6d"></span>
+      <span style="background:#3f3a34"></span>
+      <span style="background:#b8975a"></span>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= CONFIRMAÇÃO DE PRESENÇA ======================= -->
+<section class="section alt" id="presenca">
+  <div class="container container-narrow">
+    <p class="eyebrow reveal">RSVP</p>
+    <h2 class="section-title reveal">Confirme sua Presença</h2>
+    <div class="divider reveal" aria-hidden="true">
+      <svg viewBox="0 0 200 20"><path class="divider-path" d="M0 10 C 40 0, 60 20, 100 10 S 160 0, 200 10" stroke="currentColor" stroke-width="1" fill="none"/></svg>
+    </div>
+    <p class="lead reveal">Contamos com sua presença até 10 de março de 2027.</p>
+
+    <!--
+      EDITE AQUI: este é um formulário estático. Uma página puramente HTML/CSS/JS
+      não tem como processar envios sozinha. Para receber as respostas, ligue o
+      atributo "action" abaixo a um serviço de formulários (ex.: Formspree,
+      Google Forms, Netlify Forms) ou substitua esta seção pelo embed do seu
+      formulário preferido.
+    -->
+    <form class="rsvp-form reveal" id="rsvpForm" action="https://formspree.io/f/SEU_ID_AQUI" method="POST">
+      <div class="form-row">
+        <label for="nome">Nome completo</label>
+        <input type="text" id="nome" name="nome" required>
+      </div>
+      <div class="form-row">
+        <label for="email">E-mail</label>
+        <input type="email" id="email" name="email" required>
+      </div>
+      <div class="form-row">
+        <label for="acompanhantes">Número de acompanhantes</label>
+        <input type="number" id="acompanhantes" name="acompanhantes" min="0" value="0">
+      </div>
+      <div class="form-row">
+        <label>Você estará presente?</label>
+        <div class="radio-group">
+          <label><input type="radio" name="presenca" value="sim" checked> Sim, estarei lá!</label>
+          <label><input type="radio" name="presenca" value="nao"> Infelizmente não poderei ir</label>
+        </div>
+      </div>
+      <div class="form-row">
+        <label for="mensagem">Mensagem para os noivos (opcional)</label>
+        <textarea id="mensagem" name="mensagem" rows="3"></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary">Enviar Confirmação</button>
+      <p class="form-note" id="rsvpNote" hidden>Obrigado! Sua resposta foi registrada.</p>
+    </form>
+  </div>
+</section>
+
+<!-- ======================= PRESENTES ======================= -->
+<section class="section" id="presentes">
+  <div class="container container-narrow">
+    <p class="eyebrow reveal">Carinho</p>
+    <h2 class="section-title reveal">Presentes</h2>
+    <div class="divider reveal" aria-hidden="true">
+      <svg viewBox="0 0 200 20"><path class="divider-path" d="M0 10 C 40 0, 60 20, 100 10 S 160 0, 200 10" stroke="currentColor" stroke-width="1" fill="none"/></svg>
+    </div>
+    <p class="lead reveal">
+      Sua presença é o maior presente que podemos receber. Caso deseje nos presentear,
+      preparamos uma lista com muito carinho.
+    </p>
+    <div class="gift-actions reveal">
+      <!-- EDITE AQUI: link da lista de presentes -->
+      <a href="#" class="btn btn-outline" target="_blank" rel="noopener">Ver Lista de Presentes</a>
+      <!-- EDITE AQUI: chave Pix -->
+      <button class="btn btn-outline" id="pixCopyBtn" data-pix="chave-pix-exemplo@email.com">Copiar Chave Pix</button>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= FOOTER ======================= -->
+<footer class="site-footer">
+  <svg class="cross-icon cross-icon--small" viewBox="0 0 24 40" aria-hidden="true"><path d="M12 0v40M4 10h16" stroke="currentColor" stroke-width="1.2" fill="none"/></svg>
+  <p class="footer-names">Evandro &amp; Vitória</p>
+  <p class="footer-verse">"O amor é paciente, o amor é bondoso." — 1 Coríntios 13:4</p>
+  <p class="footer-hash">#EvandroEVitoria2027</p>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>
