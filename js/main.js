@@ -147,6 +147,53 @@ document.addEventListener('click', (e) => {
   }
 });
 
+/* ---------------- RSVP form: sozinho/casal e filhos ---------------- */
+const campoSozinho = document.getElementById('campoSozinho');
+const campoCasal = document.getElementById('campoCasal');
+const campoCasalEsposa = document.getElementById('campoCasalEsposa');
+const nomeInput = document.getElementById('nome');
+const nomeEsposoInput = document.getElementById('nomeEsposo');
+const nomeEsposaInput = document.getElementById('nomeEsposa');
+
+document.querySelectorAll('input[name="tipoConvidado"]').forEach((radio) => {
+  radio.addEventListener('change', () => {
+    const isCasal = document.getElementById('tipoCasal').checked;
+    campoSozinho.hidden = isCasal;
+    campoCasal.hidden = !isCasal;
+    campoCasalEsposa.hidden = !isCasal;
+    nomeInput.required = !isCasal;
+    nomeEsposoInput.required = isCasal;
+    nomeEsposaInput.required = isCasal;
+  });
+});
+
+const campoFilhos = document.getElementById('campoFilhos');
+const filhosDetalheInput = document.getElementById('filhosDetalhe');
+document.querySelectorAll('input[name="temFilhos"]').forEach((radio) => {
+  radio.addEventListener('change', () => {
+    const temFilhos = document.getElementById('filhosSim').checked;
+    campoFilhos.hidden = !temFilhos;
+    filhosDetalheInput.required = temFilhos;
+  });
+});
+
+/* ---------------- Máscara numérica do WhatsApp ---------------- */
+const whatsappInput = document.getElementById('whatsapp');
+whatsappInput.addEventListener('input', () => {
+  const digits = whatsappInput.value.replace(/\D/g, '').slice(0, 11);
+  let formatted = digits;
+  if (digits.length > 10){
+    formatted = digits.replace(/(\d{2})(\d{5})(\d{0,4})/, '($1) $2-$3');
+  } else if (digits.length > 6){
+    formatted = digits.replace(/(\d{2})(\d{4})(\d{0,4})/, '($1) $2-$3');
+  } else if (digits.length > 2){
+    formatted = digits.replace(/(\d{2})(\d{0,5})/, '($1) $2');
+  } else if (digits.length > 0){
+    formatted = digits.replace(/(\d{0,2})/, '($1');
+  }
+  whatsappInput.value = formatted.trim();
+});
+
 /* ---------------- RSVP form (client-side feedback only) ---------------- */
 const rsvpForm = document.getElementById('rsvpForm');
 const rsvpNote = document.getElementById('rsvpNote');
