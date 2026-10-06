@@ -147,6 +147,43 @@ document.addEventListener('click', (e) => {
   }
 });
 
+/* ---------------- RSVP: só carrega o restante após escolher a presença ---------------- */
+const formRestante = document.getElementById('formRestante');
+const rsvpSubmitBtn = document.getElementById('rsvpSubmitBtn');
+const campoNomeAusente = document.getElementById('campoNomeAusente');
+const nomeAusenteInput = document.getElementById('nomeAusente');
+const campoMensagem = document.getElementById('campoMensagem');
+
+function updatePresencaUI(){
+  const presencaSelecionada = document.querySelector('input[name="presenca"]:checked');
+  const respondeu = !!presencaSelecionada;
+  const vaiComparecer = respondeu && presencaSelecionada.value === 'sim';
+
+  formRestante.hidden = !vaiComparecer;
+  // Desabilita (não só esconde) os campos do restante: assim eles ficam de
+  // fora da validação do navegador e não são enviados junto no FormData,
+  // evitando que um campo obrigatório invisível trave o envio em silêncio
+  // e evitando duplicar o nome enviado junto com o campo abaixo.
+  formRestante.querySelectorAll('input, textarea').forEach((el) => { el.disabled = !vaiComparecer; });
+  if (vaiComparecer) {
+    updateTipoConvidadoUI();
+    updateFilhosUI();
+  }
+
+  const semComparecimento = respondeu && !vaiComparecer;
+  campoNomeAusente.hidden = !semComparecimento;
+  nomeAusenteInput.disabled = !semComparecimento;
+  nomeAusenteInput.required = semComparecimento;
+
+  campoMensagem.hidden = !respondeu;
+  rsvpSubmitBtn.hidden = !respondeu;
+  rsvpSubmitBtn.textContent = vaiComparecer ? 'Enviar Confirmação' : 'Enviar';
+}
+
+document.querySelectorAll('input[name="presenca"]').forEach((radio) => {
+  radio.addEventListener('change', updatePresencaUI);
+});
+
 /* ---------------- RSVP form: sozinho/casal e filhos ---------------- */
 const campoSozinho = document.getElementById('campoSozinho');
 const campoCasal = document.getElementById('campoCasal');
@@ -155,27 +192,33 @@ const nomeInput = document.getElementById('nome');
 const nomeEsposoInput = document.getElementById('nomeEsposo');
 const nomeEsposaInput = document.getElementById('nomeEsposa');
 
+function updateTipoConvidadoUI(){
+  const isCasal = document.getElementById('tipoCasal').checked;
+  campoSozinho.hidden = isCasal;
+  campoCasal.hidden = !isCasal;
+  campoCasalEsposa.hidden = !isCasal;
+  nomeInput.required = !isCasal;
+  nomeEsposoInput.required = isCasal;
+  nomeEsposaInput.required = isCasal;
+}
 document.querySelectorAll('input[name="tipoConvidado"]').forEach((radio) => {
-  radio.addEventListener('change', () => {
-    const isCasal = document.getElementById('tipoCasal').checked;
-    campoSozinho.hidden = isCasal;
-    campoCasal.hidden = !isCasal;
-    campoCasalEsposa.hidden = !isCasal;
-    nomeInput.required = !isCasal;
-    nomeEsposoInput.required = isCasal;
-    nomeEsposaInput.required = isCasal;
-  });
+  radio.addEventListener('change', updateTipoConvidadoUI);
 });
 
 const campoFilhos = document.getElementById('campoFilhos');
 const filhosDetalheInput = document.getElementById('filhosDetalhe');
+function updateFilhosUI(){
+  const temFilhos = document.getElementById('filhosSim').checked;
+  campoFilhos.hidden = !temFilhos;
+  filhosDetalheInput.required = temFilhos;
+}
 document.querySelectorAll('input[name="temFilhos"]').forEach((radio) => {
-  radio.addEventListener('change', () => {
-    const temFilhos = document.getElementById('filhosSim').checked;
-    campoFilhos.hidden = !temFilhos;
-    filhosDetalheInput.required = temFilhos;
-  });
+  radio.addEventListener('change', updateFilhosUI);
 });
+
+// Chamado aqui (e não logo após sua definição) porque updatePresencaUI
+// depende de updateTipoConvidadoUI/updateFilhosUI já estarem declaradas.
+updatePresencaUI();
 
 /* ---------------- Máscara numérica do WhatsApp ---------------- */
 const whatsappInput = document.getElementById('whatsapp');
@@ -194,14 +237,96 @@ whatsappInput.addEventListener('input', () => {
   whatsappInput.value = formatted.trim();
 });
 
-/* ---------------- RSVP form (client-side feedback only) ---------------- */
+/* ---------------- RSVP: modal de agradecimento com fogos suaves ---------------- */
+const rsvpModal = document.getElementById('rsvpModal');
+const rsvpFireworks = document.getElementById('rsvpFireworks');
+const rsvpModalMsg = document.getElementById('rsvpModalMsg');
+const rsvpModalGift = document.getElementById('rsvpModalGift');
+const SPARK_COLORS = ['var(--gold)', 'var(--gold-light)', 'var(--gold-script)', 'var(--olive)'];
+
+const RSVP_MESSAGES = {
+  sim: 'Que alegria! Sua confirmação foi recebida com todo o carinho — contamos os dias para celebrar esse momento tão especial ao seu lado. 💛',
+  nao: 'Agradecemos pela sua resposta! Sentiremos sua falta, mas ficamos felizes que você nos avisou — você segue em nosso coração e em nossas orações.'
+};
+
+function launchFireworks(){
+  rsvpFireworks.innerHTML = '';
+  const sparkCount = 20;
+  for (let i = 0; i < sparkCount; i++){
+    const spark = document.createElement('span');
+    spark.className = 'rsvp-spark';
+    const angle = (360 / sparkCount) * i + (Math.random() * 10 - 5);
+    const distance = 50 + Math.random() * 40;
+    const delay = Math.random() * 0.25;
+    const color = SPARK_COLORS[i % SPARK_COLORS.length];
+    spark.style.setProperty('--spark-angle', `${angle}deg`);
+    spark.style.setProperty('--spark-distance', `${distance}px`);
+    spark.style.setProperty('--spark-delay', `${delay}s`);
+    spark.style.setProperty('--spark-color', color);
+    rsvpFireworks.appendChild(spark);
+  }
+}
+
+function openRsvpModal(attending){
+  rsvpModalMsg.textContent = attending ? RSVP_MESSAGES.sim : RSVP_MESSAGES.nao;
+  rsvpModalGift.hidden = attending;
+  rsvpModal.hidden = false;
+  rsvpModal.classList.add('is-open');
+  if (attending) {
+    launchFireworks();
+  } else {
+    rsvpFireworks.innerHTML = '';
+  }
+  document.addEventListener('keydown', onRsvpModalKeydown);
+}
+
+function closeRsvpModal(){
+  rsvpModal.classList.remove('is-open');
+  rsvpModal.hidden = true;
+  rsvpFireworks.innerHTML = '';
+  document.removeEventListener('keydown', onRsvpModalKeydown);
+}
+
+function onRsvpModalKeydown(e){
+  if (e.key === 'Escape') closeRsvpModal();
+}
+
+rsvpModal.querySelectorAll('[data-rsvp-close]').forEach((el) => {
+  el.addEventListener('click', closeRsvpModal);
+});
+
+/* ---------------- RSVP form: envio via AJAX (Formspree) ---------------- */
 const rsvpForm = document.getElementById('rsvpForm');
-const rsvpNote = document.getElementById('rsvpNote');
-rsvpForm.addEventListener('submit', () => {
-  // A submissão real depende do "action" configurado no HTML
-  // (Formspree, Google Forms, Netlify Forms, etc). Isto apenas
-  // dá um retorno visual imediato ao usuário.
-  rsvpNote.hidden = false;
+const rsvpError = document.getElementById('rsvpError');
+const rsvpButton = rsvpSubmitBtn;
+
+rsvpForm.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  rsvpError.hidden = true;
+  rsvpButton.disabled = true;
+
+  try {
+    const formData = new FormData(rsvpForm);
+    const attending = formData.get('presenca') !== 'nao';
+    const response = await fetch(rsvpForm.action, {
+      method: 'POST',
+      body: formData,
+      headers: { Accept: 'application/json' }
+    });
+    if (response.ok) {
+      rsvpForm.reset();
+      updatePresencaUI();
+      updateTipoConvidadoUI();
+      updateFilhosUI();
+      openRsvpModal(attending);
+    } else {
+      rsvpError.hidden = false;
+    }
+  } catch (err) {
+    rsvpError.hidden = false;
+  } finally {
+    rsvpButton.disabled = false;
+  }
 });
 
 /* ---------------- Copy Pix key ---------------- */

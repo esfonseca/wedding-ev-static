@@ -12,10 +12,14 @@
        fonte gratuita oficial "Vaticana"; Cinzel é a alternativa mais usada
        no mercado de design para transmitir essa estética).
      - Great Vibes: caligrafia manuscrita, comum em convites de casamento.
+       (No convite original do Canva os nomes usam a fonte "Aniyah", que não
+       está disponível no Google Fonts; Great Vibes é a alternativa gratuita
+       mais próxima do mesmo estilo de caligrafia.)
+     - Cardo: serifada usada no "Save the Date" do convite original (Canva).
      - Cormorant Garamond: serifada elegante, para textos corridos. -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Great+Vibes&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Great+Vibes&family=Cardo:ital,wght@0,400;0,700;1,400&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="css/style.css">
 </head>
@@ -40,17 +44,22 @@
 
 <!-- ======================= HERO ======================= -->
 <section class="hero" id="topo">
-  <div class="hero-ornament hero-ornament--top" aria-hidden="true">
-    <!-- EDITE AQUI: pode trocar este ícone de cruz por um brasão/monograma -->
-    <svg viewBox="0 0 24 40" class="cross-icon"><path d="M12 0v40M4 10h16" stroke="currentColor" stroke-width="1.2" fill="none"/></svg>
-  </div>
+  <!-- EDITE AQUI: ilustrações florais dos cantos (assets/hero-flowers-*.png) -->
+  <img class="hero-corner hero-corner--tl" src="assets/hero-flowers-tl.png" alt="" aria-hidden="true">
+  <img class="hero-corner hero-corner--br" src="assets/hero-flowers-br.png" alt="" aria-hidden="true">
 
-  <p class="hero-eyebrow reveal">Com a bênção de Deus e de nossas famílias</p>
+  <p class="hero-savedate reveal">Save the Date</p>
+
+  <div class="hero-heart-divider reveal" aria-hidden="true">
+    <svg viewBox="0 0 200 20"><path d="M0 10h84M116 10h84" stroke="currentColor" stroke-width="1" fill="none"/><path d="M100 6c-1.8-2.4-5.4-2.4-6.6 0-1.2 2.4.6 4.6 6.6 8.4 6-3.8 7.8-6 6.6-8.4-1.2-2.4-4.8-2.4-6.6 0z" fill="currentColor"/></svg>
+  </div>
 
   <h1 class="hero-names reveal">
     <!-- EDITE AQUI: nomes dos noivos -->
     <span>Vitória</span><em>&amp;</em><span>Evandro</span>
   </h1>
+
+  <p class="hero-eyebrow reveal">Com a bênção de Deus e de nossas famílias</p>
 
   <p class="hero-sub reveal">Convidam para celebrar o Sacramento do Matrimônio</p>
 
@@ -83,9 +92,12 @@
     </div>
     <!-- EDITE AQUI: conte a história do casal -->
     <p class="lead reveal">
-      Depois de anos caminhando juntos, decidimos selar nossa união diante de Deus
-      e das pessoas que amamos. Será uma honra ter você conosco neste dia tão especial,
-      celebrando não apenas o amor entre nós dois, mas também a fé que nos uniu.
+      Nossos caminhos se cruzaram pelo amor em servir a Igreja e mesmo tão próximos Deus
+      nos uniu em seu tempo, <strong>o tempo de Deus</strong> e conscientes dessa
+      ação divina em nossas vidas decidimos selar nossa união e continuarmos nessa caminhada
+      <strong>juntos a eternidade</strong>. Será uma <strong>honra ter você conosco</strong>
+      neste dia tão especial, celebrando não apenas o <strong>amor entre nós</strong>, mas
+      também <strong>a fé que nos uniu</strong>.
     </p>
   </div>
 </section>
@@ -143,7 +155,7 @@
              (classe map-embed, atributos) já cuida da responsividade. -->
         <div class="map-embed">
           <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d13177.678736545122!2d-49.33028189581815!3d-28.73031852223739!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95217f1ea0b97283%3A0x124ca72794b53ea8!2sBas%C3%ADlica%20Santu%C3%A1rio%20Sagrado%20Cora%C3%A7%C3%A3o%20Misericordioso%20de%20Jesus!5e1!3m2!1spt-BR!2sbr!4v1789420411679!5m2!1spt-BR!2sbr"
+            src="https://www.google.com/maps?q=Bas%C3%ADlica+Santu%C3%A1rio+Sagrado+Cora%C3%A7%C3%A3o+Misericordioso+de+Jesus%2C+I%C3%A7ara+-+SC&output=embed"
             title="Mapa — Basílica Santuário Sagrado Coração Misericordioso de Jesus"
             loading="lazy"
             referrerpolicy="strict-origin-when-cross-origin"
@@ -158,32 +170,25 @@
         <svg class="card-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 21V9l8-6 8 6v12M4 21h16M9 21v-6h6v6" stroke="currentColor" stroke-width="1.2" fill="none"/></svg>
         <h3>Recepção</h3>
         <p class="card-rite">Festa &amp; Celebração</p>
-        <!-- EDITE AQUI: assim que o local da festa for confirmado, troque
-             o bloco abaixo pelo padrão usado no card da Cerimônia
-             (nome do espaço, endereço, horário e link do Google Maps). -->
-        <span class="card-badge">Local a definir</span>
-        <p class="card-detail">Em breve divulgaremos o local e horário da festa. Fique de olho por aqui!</p>
-      </article>
-    </div>
-  </div>
-</section>
+        <!-- EDITE AQUI: nome e endereço do salão de festa -->
+        <p class="card-detail">Salão de Festa São Donato<br>R. Altamiro Guimarães, 171-213 - Cristo Rei, Içara - SC, 88820-000</p>
 
-<!-- ======================= TRAJE ======================= -->
-<section class="section">
-  <div class="container">
-    <p class="eyebrow reveal">Dress Code</p>
-    <h2 class="section-title reveal">Traje</h2>
-    <div class="divider reveal" aria-hidden="true">
-      <svg viewBox="0 0 200 20"><path class="divider-path" d="M0 10 C 40 0, 60 20, 100 10 S 160 0, 200 10" stroke="currentColor" stroke-width="1" fill="none"/></svg>
-    </div>
-    <!-- EDITE AQUI: traje sugerido -->
-    <p class="lead reveal">Esporte fino. Pedimos, com carinho, que a cor branca seja reservada à noiva.</p>
-    <div class="swatches reveal" aria-hidden="true">
-      <span style="background:#f3e9d8"></span>
-      <span style="background:#c9b48a"></span>
-      <span style="background:#7c8a6d"></span>
-      <span style="background:#3f3a34"></span>
-      <span style="background:#b8975a"></span>
+        <!-- EDITE AQUI: mapa incorporado. Para trocar o local, gere um novo
+             embed em https://maps.google.com (Compartilhar → Incorporar um
+             mapa) e substitua apenas o "src" abaixo — o resto do markup
+             (classe map-embed, atributos) já cuida da responsividade. -->
+        <div class="map-embed">
+          <iframe
+            src="https://www.google.com/maps?q=Sal%C3%A3o+de+Festa+S%C3%A3o+Donato%2C+R.+Altamiro+Guimar%C3%A3es%2C+171-213+-+Cristo+Rei%2C+I%C3%A7ara+-+SC%2C+88820-000&output=embed"
+            title="Mapa — Salão de Festa São Donato"
+            loading="lazy"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen></iframe>
+        </div>
+
+        <!-- EDITE AQUI: link do Google Maps -->
+        <a class="card-link" href="https://maps.app.goo.gl/K6cTwUp5mN9AsRw76" target="_blank" rel="noopener">Abrir no Google Maps →</a>
+      </article>
     </div>
   </div>
 </section>
@@ -196,7 +201,7 @@
     <div class="divider reveal" aria-hidden="true">
       <svg viewBox="0 0 200 20"><path class="divider-path" d="M0 10 C 40 0, 60 20, 100 10 S 160 0, 200 10" stroke="currentColor" stroke-width="1" fill="none"/></svg>
     </div>
-    <p class="lead reveal">Contamos com sua presença até 10 de março de 2027.</p>
+    <p class="lead reveal">Contamos com sua presença até 20 de março de 2027.</p>
 
     <!--
       EDITE AQUI: este é um formulário estático. Uma página puramente HTML/CSS/JS
@@ -205,58 +210,64 @@
       Google Forms, Netlify Forms) ou substitua esta seção pelo embed do seu
       formulário preferido.
     -->
-    <form class="rsvp-form reveal" id="rsvpForm" action="https://formspree.io/f/SEU_ID_AQUI" method="POST">
-      <div class="form-row">
-        <label>Você vai sozinho(a) ou em casal?</label>
-        <div class="radio-group">
-          <label><input type="radio" name="tipoConvidado" value="sozinho" id="tipoSozinho" checked> Sozinho(a)</label>
-          <label><input type="radio" name="tipoConvidado" value="casal" id="tipoCasal"> Casal</label>
-        </div>
-      </div>
-      <div class="form-row" id="campoSozinho">
-        <label for="nome">Nome Completo</label>
-        <input type="text" id="nome" name="nome" required>
-      </div>
-      <div class="form-row" id="campoCasal" hidden>
-        <label for="nomeEsposo">Nome do esposo</label>
-        <input type="text" id="nomeEsposo" name="nomeEsposo">
-      </div>
-      <div class="form-row" id="campoCasalEsposa" hidden>
-        <label for="nomeEsposa">Nome da esposa</label>
-        <input type="text" id="nomeEsposa" name="nomeEsposa">
-      </div>
-      <div class="form-row">
-        <label for="whatsapp">WhatsApp</label>
-        <input type="tel" id="whatsapp" name="whatsapp" inputmode="numeric" placeholder="(48) 99999-9999" maxlength="15" required>
-      </div>
-      <div class="form-row">
-        <label for="acompanhantes">Número de acompanhantes</label>
-        <input type="number" id="acompanhantes" name="acompanhantes" min="0" value="0">
-      </div>
-      <div class="form-row">
-        <label>Tem filhos que virão junto?</label>
-        <div class="radio-group">
-          <label><input type="radio" name="temFilhos" value="sim" id="filhosSim"> Sim</label>
-          <label><input type="radio" name="temFilhos" value="nao" id="filhosNao" checked> Não</label>
-        </div>
-      </div>
-      <div class="form-row" id="campoFilhos" hidden>
-        <label for="filhosDetalhe">Quantos filhos e idades</label>
-        <input type="text" id="filhosDetalhe" name="filhosDetalhe" placeholder="Ex.: 2 crianças, 5 e 8 anos">
-      </div>
+    <form class="rsvp-form reveal" id="rsvpForm" action="https://formspree.io/f/xzedzpwv" method="POST">
       <div class="form-row">
         <label>Você estará presente?</label>
         <div class="radio-group">
-          <label><input type="radio" name="presenca" value="sim" checked> Sim, estarei lá!</label>
-          <label><input type="radio" name="presenca" value="nao"> Infelizmente não poderei ir</label>
+          <label><input type="radio" name="presenca" value="sim" id="presencaSim"> Sim, estarei lá!</label>
+          <label><input type="radio" name="presenca" value="nao" id="presencaNao"> Não conseguirei ir, não comparecerei</label>
         </div>
       </div>
-      <div class="form-row">
+      <div class="form-row" id="campoNomeAusente" hidden>
+        <label for="nomeAusente">Nome Completo</label>
+        <input type="text" id="nomeAusente" name="nome" placeholder="Seu nome completo">
+      </div>
+      <div class="form-rest" id="formRestante">
+        <div class="form-row">
+          <label>Você vai sozinho(a) ou em casal?</label>
+          <div class="radio-group">
+            <label><input type="radio" name="tipoConvidado" value="sozinho" id="tipoSozinho" checked> Sozinho(a)</label>
+            <label><input type="radio" name="tipoConvidado" value="casal" id="tipoCasal"> Casal</label>
+          </div>
+        </div>
+        <div class="form-row" id="campoSozinho">
+          <label for="nome">Nome Completo</label>
+          <input type="text" id="nome" name="nome" required>
+        </div>
+        <div class="form-row" id="campoCasal" hidden>
+          <label for="nomeEsposo">Nome do esposo</label>
+          <input type="text" id="nomeEsposo" name="nomeEsposo">
+        </div>
+        <div class="form-row" id="campoCasalEsposa" hidden>
+          <label for="nomeEsposa">Nome da esposa</label>
+          <input type="text" id="nomeEsposa" name="nomeEsposa">
+        </div>
+        <div class="form-row">
+          <label for="whatsapp">WhatsApp</label>
+          <input type="tel" id="whatsapp" name="whatsapp" inputmode="numeric" placeholder="(48) 99999-9999" maxlength="15" required>
+        </div>
+        <div class="form-row">
+          <label for="acompanhantes">Número de acompanhantes</label>
+          <input type="number" id="acompanhantes" name="acompanhantes" min="0" value="0">
+        </div>
+        <div class="form-row">
+          <label>Tem filhos que virão junto?</label>
+          <div class="radio-group">
+            <label><input type="radio" name="temFilhos" value="sim" id="filhosSim"> Sim</label>
+            <label><input type="radio" name="temFilhos" value="nao" id="filhosNao" checked> Não</label>
+          </div>
+        </div>
+        <div class="form-row" id="campoFilhos" hidden>
+          <label for="filhosDetalhe">Quantos filhos e idades</label>
+          <input type="text" id="filhosDetalhe" name="filhosDetalhe" placeholder="Ex.: 2 crianças, 5 e 8 anos">
+        </div>
+      </div>
+      <div class="form-row" id="campoMensagem" hidden>
         <label for="mensagem">Mensagem para os noivos (opcional)</label>
         <textarea id="mensagem" name="mensagem" rows="3"></textarea>
       </div>
-      <button type="submit" class="btn btn-primary">Enviar Confirmação</button>
-      <p class="form-note" id="rsvpNote" hidden>Obrigado! Sua resposta foi registrada.</p>
+      <button type="submit" class="btn btn-primary" id="rsvpSubmitBtn" hidden>Enviar Confirmação</button>
+      <p class="form-note form-note--error" id="rsvpError" hidden>Não conseguimos enviar sua confirmação agora. Tente novamente em instantes ou nos avise pelo WhatsApp.</p>
     </form>
   </div>
 </section>
@@ -270,14 +281,14 @@
       <svg viewBox="0 0 200 20"><path class="divider-path" d="M0 10 C 40 0, 60 20, 100 10 S 160 0, 200 10" stroke="currentColor" stroke-width="1" fill="none"/></svg>
     </div>
     <p class="lead reveal">
-      Sua presença é o maior presente que podemos receber. Caso deseje nos presentear,
-      preparamos uma lista com muito carinho.
+      Sua presença é o maior presente que podemos receber. Fique à vontade para nos presentear
+      abaixo estão algumas opções para nos presentear.
     </p>
     <div class="gift-actions reveal">
-      <!-- EDITE AQUI: link da lista de presentes -->
-      <a href="#" class="btn btn-outline" target="_blank" rel="noopener">Ver Lista de Presentes</a>
       <!-- EDITE AQUI: chave Pix -->
       <button class="btn btn-outline" id="pixCopyBtn" data-pix="f99c48fe-334e-49cd-8aec-22f43bf9261b">Copiar Chave Pix</button>
+      <!-- EDITE AQUI: link da lista de presentes -->
+      <a class="btn btn-outline" href="https://lista.havan.com.br/Convidado/ItensListaPresente/962040" target="_blank" rel="noopener">Lista de Presentes</a>
     </div>
   </div>
 </section>
@@ -285,6 +296,7 @@
 <!-- ======================= FOOTER ======================= -->
 <footer class="site-footer">
   <svg class="cross-icon cross-icon--small" viewBox="0 0 24 40" aria-hidden="true"><path d="M12 0v40M4 10h16" stroke="currentColor" stroke-width="1.2" fill="none"/></svg>
+  <p class="footer-message">Será inesquecível ter você conosco!</p>
   <p class="footer-names">Vitória &amp; Evandro</p>
   <p class="footer-verse">"O amor é paciente, o amor é bondoso." — 1 Coríntios 13:4</p>
   <p class="footer-hash">#VitoriaEEvandro2027</p>
@@ -303,6 +315,21 @@
   </svg>
   <span class="whatsapp-tooltip">Dúvidas, Converse conosco!</span>
 </a>
+
+<!-- ======================= MODAL DE AGRADECIMENTO (RSVP) ======================= -->
+<div class="rsvp-modal" id="rsvpModal" hidden>
+  <div class="rsvp-modal-backdrop" data-rsvp-close></div>
+  <div class="rsvp-modal-card" role="dialog" aria-modal="true" aria-labelledby="rsvpModalMsg">
+    <button class="rsvp-modal-close" type="button" aria-label="Fechar" data-rsvp-close>&times;</button>
+    <div class="rsvp-fireworks" id="rsvpFireworks" aria-hidden="true"></div>
+    <svg class="rsvp-modal-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7.5-4.6-10-9.3C.5 7.8 2.7 4 6.5 4 9 4 11 5.6 12 7.2 13 5.6 15 4 17.5 4 21.3 4 23.5 7.8 22 11.7 19.5 16.4 12 21 12 21z" fill="currentColor"/></svg>
+    <p class="rsvp-modal-message" id="rsvpModalMsg">Que alegria! Sua confirmação foi recebida com todo o carinho — contamos os dias para celebrar esse momento tão especial ao seu lado. 💛</p>
+    <div class="rsvp-modal-actions">
+      <button class="btn btn-outline rsvp-modal-ok" type="button" data-rsvp-close>Fechar</button>
+      <a class="btn btn-primary" id="rsvpModalGift" href="#presentes" hidden data-rsvp-close>Presentear</a>
+    </div>
+  </div>
+</div>
 
 <script src="js/main.js"></script>
 </body>
