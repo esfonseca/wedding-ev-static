@@ -211,6 +211,10 @@
       formulário preferido.
     -->
     <form class="rsvp-form reveal" id="rsvpForm" action="https://formspree.io/f/xzedzpwv" method="POST">
+      <!-- Honeypot anti-spam: campo invisível para humanos; bots simples que
+           preenchem todos os campos do formulário acabam preenchendo este
+           também, e o Formspree descarta o envio silenciosamente. -->
+      <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
       <div class="form-row">
         <label>Você estará presente?</label>
         <div class="radio-group">
