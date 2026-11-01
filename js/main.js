@@ -360,16 +360,43 @@ rsvpForm.addEventListener('submit', async (e) => {
   }
 });
 
-/* ---------------- Copy Pix key ---------------- */
+/* ---------------- Pix: copia o código e abre modal com instruções ---------------- */
 const pixBtn = document.getElementById('pixCopyBtn');
+const pixModal = document.getElementById('pixModal');
+const pixModalTitle = document.getElementById('pixModalTitle');
+const pixManual = document.getElementById('pixManual');
+const pixCode = document.getElementById('pixCode');
+document.getElementById('pixKey').textContent = pixBtn.dataset.pixKey;
+
+function openPixModal(copied){
+  pixModalTitle.textContent = copied ? 'Código Pix copiado!' : 'Pix Copia e Cola';
+  pixManual.hidden = copied;
+  pixCode.value = pixBtn.dataset.pix;
+  pixModal.hidden = false;
+  pixModal.classList.add('is-open');
+  if (!copied) pixCode.select();
+  document.addEventListener('keydown', onPixModalKeydown);
+}
+
+function closePixModal(){
+  pixModal.classList.remove('is-open');
+  pixModal.hidden = true;
+  document.removeEventListener('keydown', onPixModalKeydown);
+}
+
+function onPixModalKeydown(e){
+  if (e.key === 'Escape') closePixModal();
+}
+
+pixModal.querySelectorAll('[data-pix-close]').forEach((el) => {
+  el.addEventListener('click', closePixModal);
+});
+
 pixBtn.addEventListener('click', async () => {
-  const key = pixBtn.dataset.pix;
   try{
-    await navigator.clipboard.writeText(key);
-    const original = pixBtn.textContent;
-    pixBtn.textContent = 'Chave copiada!';
-    setTimeout(() => { pixBtn.textContent = original; }, 2000);
+    await navigator.clipboard.writeText(pixBtn.dataset.pix);
+    openPixModal(true);
   }catch(err){
-    alert('Chave Pix: ' + key);
+    openPixModal(false);
   }
 });
