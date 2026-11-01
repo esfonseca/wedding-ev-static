@@ -59,15 +59,46 @@ const cdDays = document.getElementById('cdDays');
 const cdHours = document.getElementById('cdHours');
 const cdMinutes = document.getElementById('cdMinutes');
 const cdSeconds = document.getElementById('cdSeconds');
+const cdMonthsDays = document.getElementById('cdMonthsDays');
 
 function pad(n){ return String(n).padStart(2, '0'); }
 
+// Horário de Brasília (UTC-03:00) — usado para contar meses de calendário.
+const BRT_OFFSET_MS = 3 * 3600000;
+
+// Soma meses mantendo o dia (limitado ao último dia do mês: 31/01 + 1 mês = 28/02).
+function addMonthsUTC(date, months){
+  const d = new Date(date.getTime());
+  const day = d.getUTCDate();
+  d.setUTCDate(1);
+  d.setUTCMonth(d.getUTCMonth() + months);
+  const lastDay = new Date(Date.UTC(d.getUTCFullYear(), d.getUTCMonth() + 1, 0)).getUTCDate();
+  d.setUTCDate(Math.min(day, lastDay));
+  return d;
+}
+
+function formatMonthsDays(now){
+  const from = new Date(now - BRT_OFFSET_MS);
+  const to = new Date(weddingDate.getTime() - BRT_OFFSET_MS);
+  let months = (to.getUTCFullYear() - from.getUTCFullYear()) * 12 + (to.getUTCMonth() - from.getUTCMonth());
+  if (addMonthsUTC(from, months) > to) months--;
+  const days = Math.floor((to - addMonthsUTC(from, months)) / 86400000);
+  if (months <= 0) return '';
+  const parts = [`${months} ${months === 1 ? 'mês' : 'meses'}`];
+  if (days > 0) parts.push(`${days} ${days === 1 ? 'dia' : 'dias'}`);
+  return `ou ${parts.join(' e ')}`;
+}
+
 function updateCountdown(){
-  const diff = weddingDate.getTime() - Date.now();
+  const now = Date.now();
+  const diff = weddingDate.getTime() - now;
   if (diff <= 0){
     cdDays.textContent = cdHours.textContent = cdMinutes.textContent = cdSeconds.textContent = '00';
+    cdMonthsDays.textContent = '';
     return;
   }
+  const monthsDays = formatMonthsDays(now);
+  if (cdMonthsDays.textContent !== monthsDays) cdMonthsDays.textContent = monthsDays;
   const days = Math.floor(diff / 86400000);
   const hours = Math.floor((diff % 86400000) / 3600000);
   const minutes = Math.floor((diff % 3600000) / 60000);
